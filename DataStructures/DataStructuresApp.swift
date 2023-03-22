@@ -11,7 +11,7 @@ import SwiftUI
 struct DataStructuresApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(StateController())
         }
     }
 }

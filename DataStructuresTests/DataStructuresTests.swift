@@ -10,27 +10,50 @@ import XCTest
 
 class DataStructuresTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testStack() {
+        // pop returns true if it popped an item
+        // you could get this first using base_list
+        let a = Stack()
+        for _ in 0...10 {
+            a.push(StackItem(id:0, name:"", color:.red))
         }
+        for _ in 0...10 {
+            XCTAssertTrue(a.pop())
+        }
+        XCTAssertTrue(!a.pop())
+    }
+    
+    func testQueue() {
+        // pop ^^^
+        let a = Queue()
+        for _ in 0...10 {
+            a.push(QueueItem(id:0, name:"", color:.red))
+        }
+        for _ in 0...10 {
+            XCTAssertTrue(a.tail >= a.head)
+            XCTAssertTrue(a.pop())
+        }
+        XCTAssertTrue(a.head > a.tail)
+        XCTAssertTrue(!a.pop())
+    }
+    
+    func testLinkedList() {
+        // del ==> pop ^^^
+        // not testing UI magic like base_list, just boring old basic functionality
+        // we can also technically abstract away any |next|s since all we're really doing ...
+        // ... is pretending to be a continuous list
+        let a = LinkedList()
+        for _ in 0...10 {
+            a.add_node(Node(id:0, name:"", color:.red))
+        }
+        for _ in 0...5 {
+            XCTAssertTrue(a.del_first())
+        }
+        for _ in 0...4 {
+            XCTAssertTrue(a.del_last())
+        }
+        XCTAssertTrue(!a.del_first())
+        XCTAssertTrue(!a.del_last())
     }
 
 }

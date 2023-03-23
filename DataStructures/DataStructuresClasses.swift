@@ -38,6 +38,16 @@ class Stack : ObservableObject {
         }
         return false
     }
+    
+    // unused (the StackView makes it obvious where stuff is)
+    func peek(_ loc : Int = 0) -> StackItem? {
+        if loc <= base_list.endIndex {
+            return base_list[loc]
+        }
+        else {
+            return nil
+        }
+    }
 }
 
 struct QueueItem: Identifiable {
@@ -110,6 +120,7 @@ class LinkedList : ObservableObject {
                     node.name += "-"
                 }
             }
+            // auto shuffle, whether you like it or not
             return tmpList.shuffled()
         }
         set {
